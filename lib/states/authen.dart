@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:getwidget/getwidget.dart';
+import 'package:yindeesugar/states/create_new_account.dart';
 import 'package:yindeesugar/utility/app_constant.dart';
 import 'package:yindeesugar/utility/app_controller.dart';
+import 'package:yindeesugar/widgets/widget_button.dart';
 import 'package:yindeesugar/widgets/widget_form.dart';
 import 'package:yindeesugar/widgets/widget_icon_button.dart';
 import 'package:yindeesugar/widgets/widget_image_asset.dart';
@@ -38,23 +41,9 @@ class _AuthenState extends State<Authen> {
                       child: Column(
                         children: [
                           displayLogoAndAppName(),
-                          WidgetForm(
-                            hint: 'Email : ',
-                            sufficWidget: Icon(Icons.email),
-                          ),
-                          Obx(() => WidgetForm(
-                                hint: 'Password :',
-                                obsecu: appController.redEye.value,
-                                sufficWidget: WidgetIconButton(
-                                  iconData: appController.redEye.value
-                                      ? Icons.remove_red_eye
-                                      : Icons.remove_red_eye_outlined,
-                                  pressFunc: () {
-                                    appController.redEye.value =
-                                        !appController.redEye.value;
-                                  },
-                                ),
-                              )),
+                          emailForm(),
+                          passwordForm(),
+                          loginbutton(),
                         ],
                       ),
                     ),
@@ -65,6 +54,46 @@ class _AuthenState extends State<Authen> {
           ],
         ),
       ),
+      bottomSheet: WidgetButton(
+        label: 'Create New Account !',
+        pressFunc: () {
+          Get.to(const CreateNewAccount());
+        },
+        gfButtonType: GFButtonType.transparent,
+      ),
+    );
+  }
+
+  Container loginbutton() {
+    return Container(
+      width: 300,
+      margin: const EdgeInsets.only(top: 8),
+      child: WidgetButton(
+        label: 'Login',
+        pressFunc: () {},
+      ),
+    );
+  }
+
+  Obx passwordForm() {
+    return Obx(() => WidgetForm(
+          hint: 'Password :',
+          obsecu: appController.redEye.value,
+          sufficWidget: WidgetIconButton(
+            iconData: appController.redEye.value
+                ? Icons.remove_red_eye
+                : Icons.remove_red_eye_outlined,
+            pressFunc: () {
+              appController.redEye.value = !appController.redEye.value;
+            },
+          ),
+        ));
+  }
+
+  WidgetForm emailForm() {
+    return WidgetForm(
+      hint: 'Email : ',
+      sufficWidget: Icon(Icons.email),
     );
   }
 
