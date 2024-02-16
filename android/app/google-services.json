@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "394793823944",
+    "project_id": "yindeesugar",
+    "storage_bucket": "yindeesugar.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:394793823944:android:e9fed73c1fbefc6dc33ffd",
+        "android_client_info": {
+          "package_name": "com.yindee.yindeesugar"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBWUeNq050B4gY45g4kQdjH1U1bTPUm658"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
