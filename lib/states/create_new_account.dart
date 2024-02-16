@@ -17,30 +17,27 @@ class CreateNewAccount extends StatelessWidget {
       ),
       body: ListView(
         children: [
-          SizedBox(
-            width: Get.width * 0.5,
-            child: Column(
-              children: [
-                displayImage(),
-                Row(mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    SizedBox(width: Get.width*0.75,
-                      child: Column(
-                        children: [
-                          WidgetForm( labelWidget:WidgetText(data: 'Display Name'),),
-                          WidgetForm(labelWidget:WidgetText(data: 'Email'),),
-                          WidgetForm(labelWidget:WidgetText(data: 'Password'),),
-                          WidgetButton(
-                            label: 'Create New Account',
-                            pressFunc: () {},
-                          ),
-                        ],
-                      ),
+          Column(
+            children: [
+              displayImage(),
+              Row(mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SizedBox(width: Get.width*0.75,
+                    child: Column(
+                      children: [
+                        WidgetForm( labelWidget:WidgetText(data: 'Display Name'),),
+                        WidgetForm(labelWidget:WidgetText(data: 'Email'),),
+                        WidgetForm(labelWidget:WidgetText(data: 'Password'),),
+                        WidgetButton(
+                          label: 'Create New Account',
+                          pressFunc: () {},
+                        ),
+                      ],
                     ),
-                  ],
-                ),
-              ],
-            ),
+                  ),
+                ],
+              ),
+            ],
           ),
         ],
       ),
