@@ -22,6 +22,10 @@ class _AuthenState extends State<Authen> {
 
   AppController appController = Get.put(AppController());
 
+  //key ที่ใช้ในการเช็ค validate
+
+  final formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,13 +42,16 @@ class _AuthenState extends State<Authen> {
                     Container(
                       margin: const EdgeInsets.only(top: 64),
                       width: 300,
-                      child: Column(
-                        children: [
-                          displayLogoAndAppName(),
-                          emailForm(),
-                          passwordForm(),
-                          loginbutton(),
-                        ],
+                      child: Form(
+                        key: formKey,
+                        child: Column(
+                          children: [
+                            displayLogoAndAppName(),
+                            emailForm(),
+                            passwordForm(),
+                            loginbutton(),
+                          ],
+                        ),
                       ),
                     ),
                   ],
@@ -70,13 +77,22 @@ class _AuthenState extends State<Authen> {
       margin: const EdgeInsets.only(top: 8),
       child: WidgetButton(
         label: 'Login',
-        pressFunc: () {},
+        pressFunc: () {
+          if (formKey.currentState!.validate()) {}
+        },
       ),
     );
   }
 
   Obx passwordForm() {
     return Obx(() => WidgetForm(
+          validateFanc: (p0) {
+            if (p0?.isEmpty ?? true) {
+              return 'Please Fill Password';
+            } else {
+              return null;
+            }
+          },
           hint: 'Password :',
           obsecu: appController.redEye.value,
           sufficWidget: WidgetIconButton(
@@ -92,6 +108,13 @@ class _AuthenState extends State<Authen> {
 
   WidgetForm emailForm() {
     return WidgetForm(
+      validateFanc: (p0) {
+        if (p0?.isEmpty ?? true) {
+          return 'Please Fill Email';
+        } else {
+          return null;
+        }
+      },
       hint: 'Email : ',
       sufficWidget: Icon(Icons.email),
     );
@@ -101,7 +124,7 @@ class _AuthenState extends State<Authen> {
     return Row(
       children: [
         displayImage(),
-        WidgetText(data: 'Yindee Sugar', textStyle: AppConstant().h1Style()),
+        WidgetText(data: 'Yindee', textStyle: AppConstant().h1Style()),
       ],
     );
   }
